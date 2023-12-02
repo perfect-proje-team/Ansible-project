@@ -43,13 +43,13 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Environment name for deployment | `string` | `"Development"` | no |
-| <a name="input_private_az"></a> [private\_az](#input\_private\_az) | AZ names for private subnets | `list(string)` | <pre>[<br>  "us-east-1a",<br>  "us-east-1b"<br>]</pre> | no |
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | Provider private subnets CIDR values | `list(string)` | <pre>[<br>  "10.10.1.0/24",<br>  "10.10.3.0/24"<br>]</pre> | no |
-| <a name="input_public_az"></a> [public\_az](#input\_public\_az) | AZ names for public subnets | `list(string)` | <pre>[<br>  "us-east-1a",<br>  "us-east-1b"<br>]</pre> | no |
-| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | Provider public subnets CIDR values | `list(string)` | <pre>[<br>  "10.10.0.0/24",<br>  "10.10.2.0/24"<br>]</pre> | no |
-| <a name="input_region_name"></a> [region\_name](#input\_region\_name) | Region name to launch vpc network | `string` | `"us-east-1"` | no |
-| <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | VPC network CIDR | `string` | `"10.10.0.0/16"` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment name for deployment | `string` | `-` | yes |
+| <a name="input_private_az"></a> [private\_az](#input\_private\_az) | AZ names for private subnets | `list(string)` | `-` | yes |
+| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | Provider private subnets CIDR values | `list(string)` | `-` | yes |
+| <a name="input_public_az"></a> [public\_az](#input\_public\_az) | AZ names for public subnets | `list(string)` | `-` | yes |
+| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | Provider public subnets CIDR values | `list(string)` | `-` | yes |
+| <a name="input_region_name"></a> [region\_name](#input\_region\_name) | Region name to launch vpc network | `string` | `-` | yes |
+| <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | VPC network CIDR | `string` | `-` | yes |
 
 ## Outputs
 
