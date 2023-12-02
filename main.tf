@@ -9,3 +9,11 @@ module "vpc_main" {
   private_az = ["us-east-1a", "us-east-1b"]
 
 }
+
+module "S3_bucket" {
+  source         = "./modules/s3"
+  s3_bucket_name = "perfect-proje-team-s3-bucket"
+  environment    = "development"
+
+}
+
