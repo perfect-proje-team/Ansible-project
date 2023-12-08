@@ -10,3 +10,6 @@ terraform*
 
 # Crash log files
 crash.log
+
+# tfvars
+*.tfvars

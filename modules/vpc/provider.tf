@@ -12,8 +12,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      "Application" = "Kubernetes"
-      "Tool"        = "Terragrunt-managed-resource"
+      "Application" = "Ansible"
+      "Tool"        = "Terradorm-managed-resource"
     }
   }
 }
