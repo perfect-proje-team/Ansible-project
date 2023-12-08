@@ -54,14 +54,23 @@ EOT
       ],
       "Resource": [
         "arn:aws:s3:::${module.S3_bucket.bucket_name}/*",
-        "arn:aws:s3:::${module.S3_bucket.bucket_name}}"
+        "arn:aws:s3:::${module.S3_bucket.bucket_name}"
       ]
     }
+
   ]
 }
 EOT
   vpc_id              = module.vpc_main.vpc_id
   environment         = "development"
+}
+
+
+resource "aws_iam_policy_attachment" "rds_access" {
+  name = "rds-role"
+  roles = [module.ec2_instance.ec2_iam_role]
+  policy_arn = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
+  
 }
 
 resource "aws_security_group_rule" "http" {
