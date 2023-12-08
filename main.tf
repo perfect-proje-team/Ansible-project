@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 module "vpc_main" {
   source          = "./modules/vpc"
   region_name     = "us-east-1"
@@ -12,7 +14,7 @@ module "vpc_main" {
 
 module "S3_bucket" {
   source         = "./modules/s3"
-  s3_bucket_name = "perfect-proje-team-s3-bucket"
+  s3_bucket_name = "${data.aws_caller_identity.current.account_id}-s3-bucket"
   environment    = "development"
 
 }
@@ -40,38 +42,10 @@ module "ec2_instance" {
 }
 EOT
 
-
-  ec2_iam_role_policy = <<EOT
-  {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:GetObject",
-        "s3:PutObject",
-        "s3:ListBucket"
-      ],
-      "Resource": [
-        "arn:aws:s3:::${module.S3_bucket.bucket_name}/*",
-        "arn:aws:s3:::${module.S3_bucket.bucket_name}"
-      ]
-    }
-
-  ]
-}
-EOT
   vpc_id              = module.vpc_main.vpc_id
   environment         = "development"
 }
 
-
-resource "aws_iam_policy_attachment" "rds_access" {
-  name = "rds-role"
-  roles = [module.ec2_instance.ec2_iam_role]
-  policy_arn = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
-  
-}
 
 resource "aws_security_group_rule" "http" {
   security_group_id = module.ec2_instance.security_group_id
@@ -112,7 +86,7 @@ resource "aws_security_group_rule" "allow_rds" {
 module "rds" {
   source        = "./modules/rds"
   db_subnet_ids = module.vpc_main.private_subnets
-  db_name       = "rds-database"
+  db_name       = var.db_name
   user_name     = "dbadmin"
   password      = "ChangeMe1234"
   vpc_id        = module.vpc_main.vpc_id

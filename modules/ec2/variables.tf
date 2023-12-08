@@ -52,12 +52,6 @@ variable "assume_role_policy" {
 
 }
 
-variable "ec2_iam_role_policy" {
-  description = "Set of policies to attach"
-  type        = string
-
-}
-
 variable "ec2_security_group_name" {
   type    = string
   default = "ec2-security-group"

@@ -5,5 +5,5 @@ output "security_group_id" {
 
 output "ec2_iam_role" {
   description = "ID of EC2 security group"
-  value       = aws_iam_role.ec2_role.arn
+  value       = aws_iam_role.ec2_role.name
 }

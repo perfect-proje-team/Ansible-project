@@ -19,7 +19,6 @@ No modules.
 |------|------|
 | [aws_iam_instance_profile.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
 | [aws_iam_role.ec2_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
-| [aws_iam_role_policy_attachment.name](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_instance.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance) | resource |
 | [aws_security_group.ec2_security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 
@@ -29,7 +28,6 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_ami"></a> [ami](#input\_ami) | The ID of Amazon Machine Image | `string` | n/a | yes |
 | <a name="input_assume_role_policy"></a> [assume\_role\_policy](#input\_assume\_role\_policy) | n/a | `string` | n/a | yes |
-| <a name="input_ec2_iam_role_policy"></a> [ec2\_iam\_role\_policy](#input\_ec2\_iam\_role\_policy) | Set of policies to attach | `string` | n/a | yes |
 | <a name="input_ec2_name"></a> [ec2\_name](#input\_ec2\_name) | Name of the EC2 | `string` | n/a | yes |
 | <a name="input_ec2_role_name"></a> [ec2\_role\_name](#input\_ec2\_role\_name) | name of EC2 role | `string` | n/a | yes |
 | <a name="input_ec2_security_group_name"></a> [ec2\_security\_group\_name](#input\_ec2\_security\_group\_name) | n/a | `string` | `"ec2-security-group"` | no |
@@ -45,5 +43,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_ec2_iam_role"></a> [ec2\_iam\_role](#output\_ec2\_iam\_role) | ID of EC2 security group |
 | <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | ID of EC2 security group |
 <!-- END_TF_DOCS -->

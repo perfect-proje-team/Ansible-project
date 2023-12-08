@@ -19,12 +19,6 @@ resource "aws_iam_role" "ec2_role" {
 
 }
 
-resource "aws_iam_role_policy_attachment" "name" {
-  role       = aws_iam_role.ec2_role.id
-  policy_arn = var.ec2_iam_role_policy
-
-}
-
 resource "aws_iam_instance_profile" "default" {
   depends_on = [aws_iam_role.ec2_role]
   name       = var.iam_instance_profile
