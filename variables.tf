@@ -1,6 +1,6 @@
 variable "db_name" {
   type = string
-  default = "rds-database"
+  default = "rdsdatabase"
 
 }
 
