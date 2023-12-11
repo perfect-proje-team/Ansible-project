@@ -1,0 +1,9 @@
+---
+# defaults file for Ansible_Project
+
+- name: Web Sunucu Kurulumu
+  hosts: web_servers
+  become: true
+  roles:
+    - web_server
+

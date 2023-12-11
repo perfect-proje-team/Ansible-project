@@ -1,0 +1,4 @@
+[web_servers]
+your_ec2_instance_ip ansible_user=your_remote_user
+
+

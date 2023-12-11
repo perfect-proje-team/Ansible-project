@@ -1,0 +1,24 @@
+---
+# tasks file for Ansible_Project
+
+
+- name: Güncellemeleri Uygula
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Web Sunucusu Yükle
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apache2   # veya nginx, httpd, gibi kullanılan web sunucu
+
+- name: Başlangicta Çalistirir ve Servisi Etkinleştir
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - apache2   # veya nginx, httpd, gibi kullanılan web sunucu
+
