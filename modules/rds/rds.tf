@@ -12,8 +12,19 @@ resource "aws_db_instance" "rds_db" {
   instance_class      = var.instance_class
   username            = var.user_name
   password            = var.password
+  backup_retention_period = 7
   skip_final_snapshot = true
+  multi_az = true
 }
+
+resource "aws_db_instance" "replica-rds" {
+  instance_class       = "db.t3.micro"
+  skip_final_snapshot  = true
+  backup_retention_period = 7
+  replicate_source_db = aws_db_instance.rds_db.identifier
+}
+
+
 
 resource "aws_security_group" "rds_security_group" {
   name        = var.rds_security_group_name

@@ -31,3 +31,22 @@ resource "aws_security_group" "ec2_security_group" {
   vpc_id      = var.vpc_id
 
 }
+
+resource "aws_launch_template" "launchtemplate" {
+  name_prefix   = "ansibleprojekt"
+  image_id      = var.ami
+  instance_type = "t2.micro"
+  vpc_security_group_ids = var.ec2_security_group_name.id
+}
+
+resource "aws_autoscaling_group" "asg" {
+  availability_zones = ["us-east-1a"]
+  desired_capacity   = 1
+  max_size           = 3
+  min_size           = 1
+
+  launch_template {
+    id      = aws_launch_template.ansibleprojekt.id
+    version = "$Latest"
+  }
+}
