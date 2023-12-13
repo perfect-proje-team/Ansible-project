@@ -32,14 +32,14 @@ resource "aws_security_group" "ec2_security_group" {
 
 }
 
-resource "aws_launch_template" "ansibleprojekt" {
+resource "aws_launch_template" "launchtemplate" {
   name_prefix   = "ansibleprojekt"
   image_id      = var.ami
   instance_type = "t2.micro"
   vpc_security_group_ids = var.ec2_security_group_name.id
 }
 
-resource "aws_autoscaling_group" "bar" {
+resource "aws_autoscaling_group" "asg" {
   availability_zones = ["us-east-1a"]
   desired_capacity   = 1
   max_size           = 3
