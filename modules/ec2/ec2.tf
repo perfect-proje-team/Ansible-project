@@ -32,21 +32,48 @@ resource "aws_security_group" "ec2_security_group" {
 
 }
 
+data "aws_vpcs" "main_vpc"{
+  tags = {
+    Name = "main_vpc"
+  }
+}
 resource "aws_launch_template" "launchtemplate" {
   name_prefix   = "ansibleprojekt"
   image_id      = var.ami
   instance_type = "t2.micro"
-  vpc_security_group_ids = var.ec2_security_group_name.id
+
 }
 
 resource "aws_autoscaling_group" "asg" {
-  availability_zones = ["us-east-1a"]
+  # availability_zones = ["us-east-1a"]
+  vpc_zone_identifier = data.aws_vpcs.main_vpc.ids
   desired_capacity   = 1
   max_size           = 3
   min_size           = 1
+  
+# resource "aws_autoscaling_group" "example" {
+#   capacity_rebalance  = true
+#   desired_capacity    = 1
+#   max_size            = 5
+#   min_size            = 1
+#   vpc_zone_identifier = [var.subnet.id]
 
   launch_template {
-    id      = aws_launch_template.ansibleprojekt.id
+    id      = aws_launch_template.launchtemplate.id
     version = "$Latest"
   }
 }
+
+# # Create an AMI that will start a machine whose root device is backed by
+# # an EBS volume populated from a snapshot. We assume that such a snapshot
+# # already exists with the id "snap-xxxxxxxx".
+# resource "aws_ami" "linux23" {
+#   name                = "ansible-ec2"
+#   virtualization_type = "hvm"
+#   root_device_name    = "/dev/xvda"
+#   imds_support        = "v2.0" # Enforce usage of IMDSv2. You can safely remove this line if your application explicitly doesn't support it.
+#   ebs_block_device {
+#     device_name = "/dev/xvda"
+#     volume_size = 8
+#   }
+# }
